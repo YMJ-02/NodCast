@@ -1,9 +1,10 @@
 name: DeepTech Scanner Bot
 
 on:
-  schedule:
-    # 매일 UTC 기준 13:00 (EST 8:00 AM), 22:00 (EST 5:00 PM) 에 실행
-    - cron: '0 13,22 * * *'
+  # X API 사용량 소진으로 자동 스케줄 비활성화. 재개 시 아래 schedule 블록 주석 해제.
+  # schedule:
+  #   # 매일 UTC 기준 13:00 (EST 8:00 AM), 22:00 (EST 5:00 PM) 에 실행
+  #   - cron: '0 13,22 * * *'
   workflow_dispatch: # GitHub 웹에서 언제든지 수동으로 실행 가능
 
 env:

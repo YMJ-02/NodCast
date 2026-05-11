@@ -19,6 +19,12 @@ def upload_to_twitter(text, media_path=None):
     Returns True on success, False on failure.
     """
     try:
+        # Kill switch: set ENABLE_TWITTER_POSTING=false to skip uploads
+        # (e.g. when the monthly API quota is exhausted).
+        if os.getenv("ENABLE_TWITTER_POSTING", "true").lower() in ("false", "0", "no"):
+            logger.warning("Twitter posting disabled via ENABLE_TWITTER_POSTING. Skipping upload.")
+            return False
+
         api_key = os.getenv("TWITTER_API_KEY")
         api_secret = os.getenv("TWITTER_API_SECRET")
         access_token = os.getenv("TWITTER_ACCESS_TOKEN")
